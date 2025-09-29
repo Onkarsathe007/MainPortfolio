@@ -38,8 +38,8 @@ export const AuroraBackground = ({
 // Demo Component
 export default function AuroraBackgroundDemo() {
   return (
-    <div className="flex text-center items-center justify-center">
-      <AuroraBackground>
+    <div className="flex text-center items-center justify-center mt-20">
+      {/* <AuroraBackground> */}
         <motion.div
           initial={{ opacity: 0.0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -137,9 +137,7 @@ export default function AuroraBackgroundDemo() {
           >
           </motion.div>
         </motion.div>
-      </AuroraBackground>
+      {/* </AuroraBackground> */}
     </div>
   );
 }
-
-

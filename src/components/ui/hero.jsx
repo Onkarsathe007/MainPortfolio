@@ -1,5 +1,4 @@
 "use client";
-
 import React from "react";
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
@@ -65,9 +64,9 @@ export default function AuroraBackgroundDemo() {
             transition={{ delay: 0.6, duration: 0.7, ease: "easeOut" }}
             className="flex justify-center"
           >
-            <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden">
+            <div className="w-40 h-40 md:w-50 md:h-50 rounded-full overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face&auto=format&q=80"
+                src="https://res.cloudinary.com/dn6xis9je/image/upload/v1759349976/mehd_uitwj7.jpg"
                 alt="Onkar Sathe"
                 className="w-full h-full object-cover"
               />

@@ -1,20 +1,22 @@
-import './App.css'
-import { NavBarDemo } from './components/NavBarDemo'
-import  { StackedCircularFooter } from "./components/ui/stacked-circular-footer.jsx";
-import Hero from "./components/ui/hero.jsx"
-import About from "./components/ui/About.jsx"
-import {TechnicalSkills} from "./components/ui/Technical-Skills.jsx";
+import "./App.css"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
+// Import your pages
+import HomePage from "./pages/HomePage.jsx"
+// import { BlogsPage } from "./pages/BlogsPage.jsx"
+// import { JourneyPage } from "./pages/JourneyPage.jsx"
 
 function App() {
   return (
-    <div className="min-h-screen">
-      <NavBarDemo />
-      <Hero />
-      <About />
-      <TechnicalSkills/>
-      <StackedCircularFooter/>
-    </div>
+    <Router>
+      <div className="min-h-screen">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          {/* <Route path="/blogs" element={<BlogsPage />} /> */}
+          {/* <Route path="/journey" element={<JourneyPage />} /> */}
+        </Routes>
+      </div>
+    </Router>
   )
 }
 

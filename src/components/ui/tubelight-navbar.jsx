@@ -7,6 +7,21 @@ import { cn } from "@/lib/utils"
 const NavBar = ({ items, className }) => {
   const [activeTab, setActiveTab] = useState(items[0].name)
 
+  const handleClick = (e, item) => {
+    e.preventDefault()
+    setActiveTab(item.name)
+    
+    if (item.url.startsWith('#') && item.url !== '#') {
+      const targetElement = document.querySelector(item.url)
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        })
+      }
+    }
+  }
+
 
   return (
     <div
@@ -24,7 +39,7 @@ const NavBar = ({ items, className }) => {
             <a
               key={item.name}
               href={item.url}
-              onClick={() => setActiveTab(item.name)}
+              onClick={(e) => handleClick(e, item)}
               className={cn(
                 "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors",
                 "text-foreground/80 hover:text-primary",

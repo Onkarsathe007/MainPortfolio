@@ -83,64 +83,86 @@ const Blog8 = ({
 
   return (
     <section className="py-16 sm:py-20 md:py-24 lg:py-32">
-      <div className="container px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-12 sm:gap-14 md:gap-16">
-        <div className="text-center max-w-4xl mx-auto">
-          <h2 className="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div className="text-left max-w-4xl mb-12 sm:mb-16 md:mb-20">
+          <h2 className="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-foreground">
             {heading}
           </h2>
-          <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl">
             {description}
           </p>
         </div>
 
-        <div className="grid gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-16">
-          {posts.map((post) => (
-            <div
+        <div className="space-y-12 sm:space-y-16 md:space-y-20 lg:space-y-24">
+          {posts.map((post, index) => (
+            <article
               key={post._id}
-              className="w-full max-w-6xl mx-auto"
+              className="group"
             >
-              <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 md:gap-8 lg:gap-10 xl:gap-12 items-center">
-                <div className="order-2 md:order-1 space-y-4 md:space-y-6">
-                  <div>
-                    <div className="flex flex-wrap gap-2 text-xs tracking-wider text-muted-foreground uppercase sm:gap-3 md:gap-4">
-                      {post.categories?.map((category) => <span key={category}>{category}</span>)}
-                    </div>
+              <div className={`grid gap-8 md:gap-12 lg:gap-16 items-center ${
+                index % 2 === 0 
+                  ? 'md:grid-cols-2' 
+                  : 'md:grid-cols-2'
+              }`}>
+                <div className={`space-y-4 md:space-y-6 ${
+                  index % 2 === 0 
+                    ? 'order-2 md:order-1' 
+                    : 'order-2 md:order-2'
+                }`}>
+                  <div className="flex flex-wrap gap-2 sm:gap-3">
+                    {post.categories?.map((category) => (
+                      <span 
+                        key={category}
+                        className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20"
+                      >
+                        {category}
+                      </span>
+                    ))}
                   </div>
-                  <h3 className="text-lg font-semibold sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl leading-tight">
+                  
+                  <h3 className="text-xl font-bold sm:text-2xl md:text-3xl lg:text-4xl leading-tight text-foreground">
                     <Link
                       to={`/blog/${post._id}`}
-                      className="hover:underline"
+                      className="hover:text-primary transition-colors duration-200"
                     >
                       {post.title}
                     </Link>
                   </h3>
-                  <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                  
+                  <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed">
                     {truncateContent(post.content)}
                   </p>
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm">
-                    <span className="text-muted-foreground">{post.author}</span>
-                    <span className="hidden sm:inline text-muted-foreground">•</span>
-                    <span className="text-muted-foreground">
+                  
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm text-muted-foreground">
+                    <span className="font-medium">{post.author}</span>
+                    <span className="hidden sm:inline">•</span>
+                    <time dateTime={post.createdAt}>
                       {formatDate(post.createdAt)}
-                    </span>
+                    </time>
                   </div>
+                  
                   <div className="pt-2">
                     <Link
                       to={`/blog/${post._id}`}
-                      className="inline-flex items-center font-semibold hover:underline text-sm md:text-base transition-colors"
+                      className="inline-flex items-center gap-2 font-semibold text-primary hover:text-primary/80 transition-colors duration-200 group"
                     >
-                      <span>Read more</span>
-                      <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                      <span className="text-sm md:text-base">Read more</span>
+                      <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
                     </Link>
                   </div>
                 </div>
-                <div className="order-1 md:order-2">
-                  <Link to={`/blog/${post._id}`} className="block">
-                    <div className="aspect-[16/10] sm:aspect-[16/9] md:aspect-[4/3] lg:aspect-[16/10] overflow-hidden rounded-lg border border-border transition-transform hover:scale-[1.02]">
+                
+                <div className={`${
+                  index % 2 === 0 
+                    ? 'order-1 md:order-2' 
+                    : 'order-1 md:order-1'
+                }`}>
+                  <Link to={`/blog/${post._id}`} className="block group">
+                    <div className="aspect-[16/10] sm:aspect-[16/9] md:aspect-[4/3] lg:aspect-[16/10] overflow-hidden rounded-xl border border-border/50 shadow-lg transition-all duration-300 group-hover:shadow-xl group-hover:scale-[1.02] group-hover:border-primary/20">
                       <img
                         src={post.image}
                         alt={post.title}
-                        className="h-full w-full object-cover transition-opacity duration-300 hover:opacity-90"
+                        className="h-full w-full object-cover transition-all duration-300 group-hover:brightness-110"
                         onError={(e) => {
                           e.target.src = "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg";
                         }}
@@ -149,7 +171,7 @@ const Blog8 = ({
                   </Link>
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

@@ -1,7 +1,7 @@
 // Use proxy in development, direct API in production
 const API_BASE_URL = import.meta.env.DEV 
   ? '/api' 
-  : (import.meta.env.VITE_API_BASE_URL || 'http://localhost:9090');
+  : (import.meta.env.VITE_API_BASE_URL || 'https://mainportfolio-xyfi.onrender.com').replace(/\/$/, '');
 
 class BlogAPI {
   static async getAllBlogs() {
@@ -17,7 +17,8 @@ class BlogAPI {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       
-      return await response.json();
+      const data = await response.json();
+      return data.blogs || data;
     } catch (error) {
       console.error('Error fetching blogs:', error);
       

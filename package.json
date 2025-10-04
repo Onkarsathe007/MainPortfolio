@@ -1,23 +1,39 @@
 {
-  "name": "BLOG",
+  "name": "portfolio-blog-api",
   "module": "mjs",
   "type": "module",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Production-ready blog API with authentication",
+  "main": "server.js",
   "scripts": {
+    "start": "NODE_ENV=production node server.js",
+    "dev": "NODE_ENV=development nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "generate-key": "node generate-api-key.js",
+    "build": "echo \"No build step required for Node.js\"",
+    "logs": "tail -f logs/app.log",
+    "logs:error": "tail -f logs/error.log"
   },
-  "keywords": [],
+  "keywords": ["blog", "api", "express", "mongodb", "production"],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.15.0",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
   "dependencies": {
     "biome": "^0.3.3",
+    "compression": "^1.8.1",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.2.0",
     "dotenv": "^17.2.2",
     "express": "^5.1.0",
+    "express-rate-limit": "^8.1.0",
+    "express-validator": "^7.2.1",
+    "helmet": "^8.1.0",
     "mongoose": "^8.18.2",
+    "morgan": "^1.10.1",
     "nodemon": "^3.1.10"
   }
 }

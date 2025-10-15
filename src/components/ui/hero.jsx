@@ -3,6 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 import { SiWakatime } from "react-icons/si";
+import { Button } from "./moving-border";
 
 // This is a placeholder for the `cn` utility function.
 // In a real project, you would import it from a utility file.
@@ -91,14 +92,16 @@ export default function AuroraBackgroundDemo() {
               Download Resume
             </button>
 
-<button
-  onClick={() => (window.location.href = "/blogs")}
-  className="bg-transparent border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 
-             hover:border-gray-400 dark:hover:border-gray-500 hover:text-gray-900 dark:hover:text-gray-100 
-             rounded-full px-8 py-3 font-semibold transition-all duration-300 transform hover:scale-105"
->
-  Read My Blog
-</button>
+            <Button
+              onClick={() => (window.location.href = "/blogs")}
+              borderRadius="1.75rem"
+              containerClassName="w-48 h-12"
+              className="bg-transparent text-black dark:text-white font-semibold"
+              borderClassName="h-2 w-12 bg-purple-500"
+              duration={3000}
+            >
+              Read My Blog
+            </Button>
           </motion.div>
           
           <motion.div 

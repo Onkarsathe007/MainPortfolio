@@ -65,7 +65,7 @@ export default function AuroraBackgroundDemo() {
             transition={{ delay: 0.6, duration: 0.7, ease: "easeOut" }}
             className="flex justify-center"
           >
-            <div className="w-40 h-40 md:w-50 md:h-50 rounded-full overflow-hidden">
+            <div className="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-gray-200 shadow-xl">
               <img
                 src="https://res.cloudinary.com/dn6xis9je/image/upload/v1759349976/mehd_uitwj7.jpg"
                 alt="Onkar Sathe"
@@ -74,12 +74,12 @@ export default function AuroraBackgroundDemo() {
             </div>
           </motion.div>
           
-          <div className="text-4xl md:text-8xl font-bold dark:text-white text-black text-center leading-tight">
+          <div className="text-4xl md:text-7xl font-bold dark:text-white text-black text-center leading-tight">
             Onkar Sathe
           </div>
           
-          <div className="text-xl md:text-3xl font-light text-gray-700 dark:text-gray-300 text-center max-w-3xl leading-relaxed">
-            Full Stack Developer crafting digital experiences with passion and precision
+          <div className="text-lg md:text-2xl font-normal text-gray-600 dark:text-gray-400 text-center max-w-2xl leading-relaxed">
+            Full Stack Developer crafting digital experiences
           </div>
           
           <motion.div 
@@ -88,9 +88,14 @@ export default function AuroraBackgroundDemo() {
             transition={{ delay: 0.8, duration: 0.6 }}
             className="flex flex-col sm:flex-row gap-4 mt-8"
           >
-            <button className="bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 hover:bg-black dark:hover:bg-white rounded-full px-8 py-3 font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+            <a 
+              href="https://drive.google.com/uc?export=download&id=1OeVec6Yjn4J4tBudMyC5WW23PmYqCuP4" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 hover:bg-black dark:hover:bg-white rounded-full px-8 py-3 font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+            >
               Download Resume
-            </button>
+            </a>
 
             <Button
               onClick={() => (window.location.href = "/blogs")}

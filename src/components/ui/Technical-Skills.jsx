@@ -16,9 +16,9 @@ const skills = [
 
 export function TechnicalSkills() {
   return (
-    <section className="flex justify-center items-center px-4 py-10 bg-gray-50">
+    <section className="flex justify-center items-center px-4 py-20 bg-white">
 
-<div className="w-full max-w-6xl rounded-3xl border border-gray-400 bg-white p-8 md:p-12">
+<div className="w-full max-w-6xl rounded-3xl border border-gray-300 bg-white p-8 md:p-12 shadow-sm">
         <h3 className="text-center text-2xl md:text-3xl font-bold text-gray-700 mb-10">
           Technical Skills
         </h3>
@@ -27,7 +27,7 @@ export function TechnicalSkills() {
           {skills.map((skill, index) => (
             <div
               key={index}
-              className="flex items-center gap-4 p-4 border border-gray-200 rounded-xl transition-colors duration-200 hover:border-black-500"
+              className="flex items-center gap-4 p-4 border border-gray-200 rounded-xl transition-all duration-300 hover:border-gray-900 hover:shadow-md group"
             >
               <div className="flex-shrink-0 bg-gray-100 rounded-full p-2">
                 <VerifiedIcon className="text-black-600 w-6 h-6" />

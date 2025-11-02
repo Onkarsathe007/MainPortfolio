@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { useNavigate, useLocation } from "react-router-dom"
@@ -9,6 +9,47 @@ const NavBar = ({ items, className }) => {
   const [activeTab, setActiveTab] = useState(items[0].name)
   const navigate = useNavigate()
   const location = useLocation()
+
+  // Detect scroll position and update active tab
+  useEffect(() => {
+    // Only run scroll detection on home page
+    if (location.pathname !== '/') {
+      setActiveTab(null) // Deactivate all tabs when not on home page
+      return
+    }
+
+    const handleScroll = () => {
+      const sections = items
+        .filter(item => item.url.startsWith('#'))
+        .map(item => ({
+          name: item.name,
+          element: document.querySelector(item.url)
+        }))
+        .filter(section => section.element)
+
+      // Get current scroll position
+      const scrollPosition = window.scrollY + 100 // offset for navbar height
+
+      // Find which section is currently in view
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i]
+        if (section.element.offsetTop <= scrollPosition) {
+          setActiveTab(section.name)
+          break
+        }
+      }
+    }
+
+    // Run once on mount
+    handleScroll()
+
+    // Add scroll listener
+    window.addEventListener('scroll', handleScroll)
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [location.pathname, items])
 
   const handleClick = (e, item) => {
     e.preventDefault()

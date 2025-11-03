@@ -59,6 +59,42 @@ class BlogAPI {
       throw error;
     }
   }
+
+  static async createBlog(blogData, apiKey) {
+    try {
+      const response = await fetch(`${API_BASE_URL}/blog`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-Key': apiKey,
+        },
+        body: JSON.stringify(blogData),
+      });
+      
+      const data = await response.json();
+      
+      if (!response.ok) {
+        if (response.status === 401) {
+          throw new Error('Authentication required. Please provide a valid API key.');
+        }
+        if (response.status === 403) {
+          throw new Error('Invalid API key. Access denied.');
+        }
+        throw new Error(data.error || data.message || `HTTP error! status: ${response.status}`);
+      }
+      
+      return data;
+    } catch (error) {
+      console.error('Error creating blog:', error);
+      
+      // Better error messages for debugging
+      if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
+        throw new Error('Unable to connect to the blog server. Please make sure the backend server is running.');
+      }
+      
+      throw error;
+    }
+  }
 }
 
 export default BlogAPI;

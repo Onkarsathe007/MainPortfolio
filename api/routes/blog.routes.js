@@ -7,6 +7,18 @@ import logger from "../../utils/logger.js";
 
 const router = express.Router();
 
+// Validate API key endpoint (for admin login)
+router.post("/validate-key", 
+  verifyApiKey,
+  (req, res) => {
+    // If we reach here, the API key is valid (verifyApiKey middleware passed)
+    res.json({
+      valid: true,
+      message: "API key is valid"
+    });
+  }
+);
+
 // Get all blogs with pagination and filtering
 router.get("/", asyncHandler(async (req, res) => {
   const page = parseInt(req.query.page) || 1;

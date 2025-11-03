@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BlogAPI from '../services/blogAPI';
+import '../styles/AdminEditor.css';
 
 export default function AdminEditorPage() {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ export default function AdminEditorPage() {
   const [categories, setCategories] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState({ type: '', text: '' });
+  const [wordCount, setWordCount] = useState(0);
 
   useEffect(() => {
     // Check if authenticated
@@ -19,6 +21,12 @@ export default function AdminEditorPage() {
       navigate('/admin');
     }
   }, [navigate]);
+
+  useEffect(() => {
+    // Update word count
+    const words = content.trim().split(/\s+/).filter(Boolean).length;
+    setWordCount(words);
+  }, [content]);
 
   const handleLogout = () => {
     localStorage.removeItem('blog_admin_key');
@@ -81,118 +89,135 @@ export default function AdminEditorPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <div className="border-b border-gray-100">
-        <div className="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
-          <h1 className="text-sm font-medium text-gray-900">New Post</h1>
-          <button
-            onClick={handleLogout}
-            className="text-xs text-gray-500 hover:text-gray-900 transition-colors"
-          >
-            Logout
-          </button>
-        </div>
-      </div>
+    <div className="editor-container">
+      {/* Subtle gradient background */}
+      <div className="editor-background"></div>
 
-      {/* Editor */}
-      <div className="max-w-4xl mx-auto px-6 py-12">
-        <form onSubmit={handleSubmit} className="space-y-8">
-          {/* Title */}
-          <div>
+      {/* Header */}
+      <header className="editor-header">
+        <div className="editor-header-content">
+          <div className="editor-title">
+            <span className="editor-icon">✍️</span>
+            <span>Write</span>
+          </div>
+          <div className="editor-stats">
+            <span className="word-count">{wordCount} words</span>
+            <span className="divider">·</span>
+            <button onClick={handleLogout} className="logout-btn">
+              Logout
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Main Editor */}
+      <main className="editor-main">
+        <form onSubmit={handleSubmit} className="editor-form">
+          {/* Title Input */}
+          <div className="title-section">
             <input
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              placeholder="Title"
-              className="w-full text-4xl font-light text-gray-900 placeholder-gray-300 focus:outline-none"
+              placeholder="Untitled Story"
+              className="title-input"
               required
               disabled={isSubmitting}
+              autoFocus
             />
           </div>
 
-          {/* Meta fields */}
-          <div className="space-y-4 pt-4 border-t border-gray-100">
-            <input
-              type="text"
-              value={author}
-              onChange={(e) => setAuthor(e.target.value)}
-              placeholder="Author (optional)"
-              className="w-full text-sm text-gray-700 placeholder-gray-400 focus:outline-none py-2"
-              disabled={isSubmitting}
-            />
-            
+          {/* Meta Information */}
+          <div className="meta-section">
+            <div className="meta-grid">
+              <input
+                type="text"
+                value={author}
+                onChange={(e) => setAuthor(e.target.value)}
+                placeholder="Your name"
+                className="meta-input"
+                disabled={isSubmitting}
+              />
+              <input
+                type="text"
+                value={categories}
+                onChange={(e) => setCategories(e.target.value)}
+                placeholder="Tags (comma separated)"
+                className="meta-input"
+                disabled={isSubmitting}
+              />
+            </div>
             <input
               type="url"
               value={image}
               onChange={(e) => setImage(e.target.value)}
-              placeholder="Image URL (optional)"
-              className="w-full text-sm text-gray-700 placeholder-gray-400 focus:outline-none py-2"
-              disabled={isSubmitting}
-            />
-            
-            <input
-              type="text"
-              value={categories}
-              onChange={(e) => setCategories(e.target.value)}
-              placeholder="Categories (comma separated, optional)"
-              className="w-full text-sm text-gray-700 placeholder-gray-400 focus:outline-none py-2"
+              placeholder="Cover image URL (optional)"
+              className="meta-input meta-input-full"
               disabled={isSubmitting}
             />
           </div>
 
-          {/* Content */}
-          <div className="pt-8">
+          {/* Content Editor */}
+          <div className="content-section">
             <textarea
               value={content}
               onChange={(e) => setContent(e.target.value)}
-              placeholder="Write your story..."
-              className="w-full min-h-[400px] text-lg text-gray-800 placeholder-gray-300 focus:outline-none leading-relaxed resize-none"
+              placeholder="Start writing something amazing..."
+              className="content-textarea"
               required
               disabled={isSubmitting}
             />
           </div>
 
-          {/* Message */}
+          {/* Status Message */}
           {message.text && (
-            <div className={`text-sm text-center py-2 ${
-              message.type === 'success' ? 'text-green-600' : 'text-red-600'
-            }`}>
-              {message.text}
+            <div className={`status-message ${message.type}`}>
+              {message.type === 'success' ? '✓' : '✕'} {message.text}
             </div>
           )}
 
-          {/* Actions */}
-          <div className="flex gap-4 pt-8 border-t border-gray-100">
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="px-6 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
-            >
-              {isSubmitting ? 'Publishing...' : 'Publish'}
-            </button>
-            
-            <button
-              type="button"
-              onClick={handleClear}
-              disabled={isSubmitting}
-              className="px-6 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:border-gray-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              Clear
-            </button>
+          {/* Action Bar */}
+          <div className="action-bar">
+            <div className="action-left">
+              <button
+                type="button"
+                onClick={handleClear}
+                disabled={isSubmitting}
+                className="btn-secondary"
+              >
+                Clear
+              </button>
+            </div>
+            <div className="action-right">
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="btn-primary"
+              >
+                {isSubmitting ? (
+                  <>
+                    <span className="spinner"></span>
+                    Publishing...
+                  </>
+                ) : (
+                  <>Publish →</>
+                )}
+              </button>
+            </div>
           </div>
         </form>
-      </div>
 
-      {/* Tips */}
-      <div className="max-w-4xl mx-auto px-6 pb-12">
-        <div className="text-xs text-gray-400 space-y-1">
-          <p>💡 Tips:</p>
-          <p>• You can use Markdown formatting in your content</p>
-          <p>• Add multiple categories separated by commas</p>
-          <p>• Keep your content focused and engaging</p>
+        {/* Writing Tips */}
+        <div className="writing-tips">
+          <p className="tip-title">💡 Writing Tips</p>
+          <ul className="tip-list">
+            <li>Write freely - edit later</li>
+            <li>Use Markdown for formatting</li>
+            <li>Keep paragraphs short and scannable</li>
+            <li>Tell a story that matters</li>
+          </ul>
         </div>
-      </div>
+      </main>
     </div>
   );
 }

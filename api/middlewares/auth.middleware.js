@@ -1,12 +1,6 @@
-import crypto from 'crypto';
 import dotenv from 'dotenv';
 
 dotenv.config();
-
-// Generate a secure API key - run this once and add to your .env file
-export function generateApiKey() {
-  return crypto.randomBytes(32).toString('hex');
-}
 
 // Middleware to verify API key
 export function verifyApiKey(req, res, next) {
@@ -19,18 +13,16 @@ export function verifyApiKey(req, res, next) {
     });
   }
 
-  // Hash the provided API key to compare with stored hash
-  const hashedApiKey = crypto.createHash('sha256').update(apiKey).digest('hex');
-  const validApiKeyHash = process.env.API_KEY_HASH;
+  const validApiKey = process.env.API_KEY;
 
-  if (!validApiKeyHash) {
+  if (!validApiKey) {
     return res.status(500).json({ 
       error: 'Server configuration error',
       message: 'API key not configured on server' 
     });
   }
 
-  if (hashedApiKey !== validApiKeyHash) {
+  if (apiKey !== validApiKey) {
     return res.status(403).json({ 
       error: 'Invalid API key',
       message: 'Access denied' 
@@ -38,9 +30,4 @@ export function verifyApiKey(req, res, next) {
   }
 
   next();
-}
-
-// Utility function to hash an API key for storage
-export function hashApiKey(apiKey) {
-  return crypto.createHash('sha256').update(apiKey).digest('hex');
 }

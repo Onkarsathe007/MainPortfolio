@@ -2,16 +2,20 @@
 import VerifiedIcon from '@mui/icons-material/Verified';
 
 const skills = [
-  { name: "C", level: "Experienced" },
-  { name: "C++", level: "Experienced" },
-  { name: "Java", level: "Experienced" },
-  { name: "Python", level: "Intermediate" },
+  { name: "JavaScript", level: "Intermediate" },
+  { name: "Java", level: "Intermediate" },
   { name: "SQL", level: "Experienced" },
+  { name: "MongoDB", level: "Intermediate" },
   { name: "DBMS", level: "Intermediate" },
   { name: "OS", level: "Intermediate" },
-  { name: "DSA", level: "Intermediate" },
-  { name: "Android", level: "Intermediate" },
+  { name: "DSA", level: "Learning" },
   { name: "CN", level: "Intermediate" },
+  { name: "Docker", level: "Intermediate" },
+  { name: "Kubernetes", level: "Beginner" },
+  { name: "Linux", level: "Beginner" },
+  { name: "AWS(Cloud)", level: "Beginner" },
+  { name: "Git", level: "Intermediate" },
+
 ];
 
 export function TechnicalSkills() {

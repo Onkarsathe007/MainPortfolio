@@ -95,6 +95,39 @@ class BlogAPI {
       throw error;
     }
   }
+
+  static async validateApiKey(apiKey) {
+    try {
+      // Use the dedicated validation endpoint
+      const response = await fetch(`${API_BASE_URL}/blog/validate-key`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-Key': apiKey,
+        },
+      });
+      
+      // If we get 200, the API key is valid
+      if (response.status === 200) {
+        return true;
+      }
+      
+      // If we get 401 or 403, the API key is invalid
+      if (response.status === 401 || response.status === 403) {
+        return false;
+      }
+      
+      // Any other status code, throw an error
+      throw new Error(`Unexpected response status: ${response.status}`);
+    } catch (error) {
+      console.error('Error validating API key:', error);
+      // If there's a network error, we should still throw it
+      if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
+        throw new Error('Unable to connect to the blog server. Please check your connection.');
+      }
+      throw error;
+    }
+  }
 }
 
 export default BlogAPI;

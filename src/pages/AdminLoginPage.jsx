@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import BlogAPI from '../services/blogAPI';
 
 export default function AdminLoginPage() {
   const [apiKey, setApiKey] = useState('');
   const [error, setError] = useState('');
+  const [isValidating, setIsValidating] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,7 +16,7 @@ export default function AdminLoginPage() {
     }
   }, [navigate]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     
@@ -23,9 +25,26 @@ export default function AdminLoginPage() {
       return;
     }
 
-    // Store the API key (will be validated when making API calls)
-    localStorage.setItem('blog_admin_key', apiKey);
-    navigate('/admin/editor');
+    setIsValidating(true);
+
+    try {
+      // Validate the API key with the backend
+      const isValid = await BlogAPI.validateApiKey(apiKey.trim());
+      
+      if (isValid) {
+        // Store the API key only if it's valid
+        localStorage.setItem('blog_admin_key', apiKey.trim());
+        navigate('/admin/editor');
+      } else {
+        setError('Invalid API key. Access denied.');
+        setApiKey('');
+      }
+    } catch (err) {
+      console.error('Login error:', err);
+      setError('Unable to verify API key. Please check your connection and try again.');
+    } finally {
+      setIsValidating(false);
+    }
   };
 
   const handleLogout = () => {
@@ -50,6 +69,7 @@ export default function AdminLoginPage() {
               placeholder="API Key"
               className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors text-sm"
               autoFocus
+              disabled={isValidating}
             />
           </div>
 
@@ -61,9 +81,10 @@ export default function AdminLoginPage() {
 
           <button
             type="submit"
-            className="w-full bg-gray-900 text-white py-3 rounded-lg hover:bg-gray-800 transition-colors text-sm font-medium"
+            disabled={isValidating}
+            className="w-full bg-gray-900 text-white py-3 rounded-lg hover:bg-gray-800 transition-colors text-sm font-medium disabled:bg-gray-400 disabled:cursor-not-allowed"
           >
-            Continue
+            {isValidating ? 'Verifying...' : 'Continue'}
           </button>
         </form>
 

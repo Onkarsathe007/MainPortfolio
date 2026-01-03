@@ -6,6 +6,14 @@ import { Github, ExternalLink, BookOpen } from "lucide-react";
 
 const projects = [
   {
+    title: "GoodBudget",
+    description: "ML Powered Expense Tracker to manage and track expenses (Under developement)",
+    image: "https://res.cloudinary.com/dn6xis9je/image/upload/v1767449146/Blue_and_White_Illustrative_Project_Meeting_Instagram_Post_waqaza.png",
+    link: "",
+    liveLink: "#",
+  },
+
+  {
     title: "Fastshop",
     description: "E-commerce website",
     image: "https://res.cloudinary.com/dn6xis9je/image/upload/v1762107504/Blue_and_White_Illustrative_Project_Meeting_Instagram_Post_odt9d0.png",

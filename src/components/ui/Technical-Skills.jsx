@@ -4,17 +4,18 @@ import VerifiedIcon from '@mui/icons-material/Verified';
 const skills = [
   { name: "JavaScript", level: "Intermediate" },
   { name: "Java", level: "Intermediate" },
-  { name: "SQL", level: "Experienced" },
+  { name: "SQL", level: "Intermediate" },
   { name: "MongoDB", level: "Intermediate" },
   { name: "DBMS", level: "Intermediate" },
   { name: "OS", level: "Intermediate" },
   { name: "DSA", level: "Learning" },
   { name: "CN", level: "Intermediate" },
   { name: "Docker", level: "Intermediate" },
-  { name: "Kubernetes", level: "Beginner" },
-  { name: "Linux", level: "Beginner" },
-  { name: "AWS(Cloud)", level: "Beginner" },
+  { name: "Redis", level: "Beginner" },
+  { name: "Linux", level: "Intermediate" },
+  { name: "AWS(Cloud)", level: "Intermediate" },
   { name: "Git", level: "Intermediate" },
+  { name: "ML", level: "Beginner" },
 
 ];
 
@@ -22,7 +23,7 @@ export function TechnicalSkills() {
   return (
     <section className="flex justify-center items-center px-4 py-20 bg-white">
 
-<div className="w-full max-w-6xl rounded-3xl border border-gray-300 bg-white p-8 md:p-12 shadow-sm">
+      <div className="w-full max-w-6xl rounded-3xl border border-gray-300 bg-white p-8 md:p-12 shadow-sm">
         <h3 className="text-center text-2xl md:text-3xl font-bold text-gray-700 mb-10">
           Technical Skills
         </h3>

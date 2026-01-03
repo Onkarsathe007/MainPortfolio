@@ -5,14 +5,14 @@ import { Award, Users, ChevronDown } from 'lucide-react';
 const AboutMe = ({
   name = "Onkar Sathe",
   experience = {
-    years: "4+ years",
+    years: "1.3+ years",
     details: ["Personal Projects", "Freelancing"]
   },
   education = {
     degree: "B-Tech in AI and Data Science",
     diploma: "Diploma in Computer Engineering"
   },
-  aboutText = "Hello! I'm Onkar Sathe, a passionate third-year Computer Engineering student at VIIT Pune with a keen interest in developing innovative software solutions. My journey in the tech world has been fueled by curiosity and a desire to create impactful projects. With a strong foundation in computer science principles and hands-on experience in various programming languages and frameworks, I am always eager to tackle new challenges and expand my skill set."
+  aboutText = "Hello! I'm Onkar Sathe, a passionate third-year Computer Engineering student at VIIT Pune with a keen interest in developing innovative and scalable software solutions. My journey in the tech world has been fueled by curiosity and a desire to create impactful projects. With a strong foundation in computer science principles and hands-on experience in various programming languages and frameworks, I am always eager to tackle new challenges and expand my skill set."
 }) => {
   return (
     <div className="w-full bg-white py-20">
@@ -28,7 +28,7 @@ const AboutMe = ({
           backgroundSize: "40px 40px, 40px 40px",
         }}
       />
-      
+
       <div className="relative z-10 max-w-6xl mx-auto px-6">
         {/* Two Column Layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mb-16">

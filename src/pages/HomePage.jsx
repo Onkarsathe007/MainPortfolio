@@ -4,6 +4,7 @@ import Hero from "../components/ui/hero.jsx"
 import About from "../components/ui/About.jsx"
 import {TechnicalSkills} from "../components/ui/Technical-Skills.jsx";
 import Projects from "../components/ui/Projects.jsx";
+import TiltShowcase from "../components/ui/TiltShowcase.jsx";
 import {Blog8 } from "../components/ui/Blog/BlogCards.jsx"
 
 function HomePage() {
@@ -21,6 +22,9 @@ function HomePage() {
       </section>
       <section id="projects">
         <Projects/>
+      </section>
+      <section id="showcase">
+        <TiltShowcase/>
       </section>
 
       <StackedCircularFooter/>

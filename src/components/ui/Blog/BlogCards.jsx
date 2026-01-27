@@ -2,7 +2,7 @@ import { Calendar, Clock } from "lucide-react";
 import { useState, useEffect } from "react";
 import HashnodeAPI from "../../../services/hashnodeAPI";
 
-const HASHNODE_USERNAME = "newtest01.hashnode.dev";
+const HASHNODE_USERNAME = "onkarsathe.hashnode.dev";
 
 const Blog8 = ({
   heading = "Welcome to My Blogs",
@@ -30,10 +30,10 @@ const Blog8 = ({
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'short', 
-      day: 'numeric' 
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
     });
   };
 
@@ -105,8 +105,8 @@ const Blog8 = ({
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {posts.map((post) => (
-            <a 
-              key={post._id} 
+            <a
+              key={post._id}
               href={`https://${HASHNODE_USERNAME}/${post.slug}`}
               target="_blank"
               rel="noopener noreferrer"

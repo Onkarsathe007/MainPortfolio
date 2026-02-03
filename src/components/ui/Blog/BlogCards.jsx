@@ -2,7 +2,7 @@ import { Calendar, Clock } from "lucide-react";
 import { useState, useEffect } from "react";
 import HashnodeAPI from "../../../services/hashnodeAPI";
 
-const HASHNODE_USERNAME = "onkarsathe.hashnode.dev";
+const HASHNODE_USERNAME = "blog.onkarsathe.co.in";
 
 const Blog8 = ({
   heading = "Welcome to My Blogs",

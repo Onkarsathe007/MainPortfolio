@@ -7,6 +7,7 @@ import Projects from "../components/ui/Projects.jsx";
 import TiltShowcase from "../components/ui/TiltShowcase.jsx";
 import {Blog8 } from "../components/ui/Blog/BlogCards.jsx"
 import GitHubCalendarSection from "../components/ui/GitHubCalendar.jsx"
+import Certifications from "../components/ui/Certifications.jsx";
 
 function HomePage() {
   return (
@@ -23,6 +24,9 @@ function HomePage() {
       </section>
       <section id="projects">
         <Projects/>
+      </section>
+      <section id="certifications">
+        <Certifications/>
       </section>
       <section id="showcase">
         <TiltShowcase/>

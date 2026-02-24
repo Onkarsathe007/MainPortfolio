@@ -7,6 +7,13 @@ const certifications = [
     image: "https://res.cloudinary.com/dn6xis9je/image/upload/v1771707306/aws_cloud_UA0K7X6W81OL_page-0001_fcim7j.jpg",
   },
   {
+    title: "MCP Fundamental's by Anthropic",
+    organization: "Anthropic",
+    image: "https://res.cloudinary.com/dn6xis9je/image/upload/v1771910702/certificate-ss5ctdrhp23k-1771910491_page-0001_q02rvx.jpg",
+  },
+
+
+  {
     title: "Infenion Bug Hunter",
     organization: "Infenion",
     image: "https://res.cloudinary.com/dn6xis9je/image/upload/v1771708553/Bug_Hunter_Sathe_Onkar_Abasaheb_page-0001_ddpvl3.jpg",

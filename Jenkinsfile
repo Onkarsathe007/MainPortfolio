@@ -3,12 +3,14 @@ pipeline {
     
     environment {
         DOCKER_IMAGE = 'onkarsathe007/mainportfolio'
+        GIT_BRANCH = 'frontend'
     }
     
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                git branch: "${GIT_BRANCH}",
+                    url: 'https://github.com/Onkarsathe007/MainPortfolio.git'
             }
         }
         

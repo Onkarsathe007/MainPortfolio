@@ -2,6 +2,12 @@ import { motion } from "framer-motion";
 
 const certifications = [
   {
+    title: "Kubernetes Certification",
+    organization: "Code Cloud",
+    image: "https://res.cloudinary.com/dn6xis9je/image/upload/v1772518875/e6c08f4b-1_qou8pg.png"
+  },
+
+  {
     title: "Introduction to IT and AWS",
     organization: "Amazon Web Services",
     image: "https://res.cloudinary.com/dn6xis9je/image/upload/v1771707306/aws_cloud_UA0K7X6W81OL_page-0001_fcim7j.jpg",
